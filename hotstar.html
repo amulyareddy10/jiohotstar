@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JioHotstar-Watch Movies,TV Shows...</title>
+    <link rel="icon" type="image" href="jiohotstar.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            scrollbar-width: none;
+        }
+        .container{
+          width: 100%;
+          height: 100vh;
+          background-color: skyblue;
+        }
+        .navigation{
+          width: 8vw;
+          height: 100vh;
+          background-color: black;
+          display: flex;
+          flex-direction: column;
+          justify-content: start;
+          align-items: center;
+          color: white;
+          gap: 30px;
+          font-size: 25px;
+          position: fixed;
+          top: 0;
+          left: 0;
+
+        }
+        nav img{
+          cursor: pointer;
+        }
+       .logo{
+        margin-bottom: 30px;
+       }
+       nav i:hover{
+        cursor: pointer;
+        color: grey;
+
+       }
+       .main {
+            width: 92vw;
+            min-height: 100vh;
+            background-color: black;
+            float: right;
+        }
+        .section1{
+            width:90%;
+            /* background-color: red; */
+            border-radius: 10px;
+            margin:10px;
+            display: flex;
+            gap:10px;
+            height:350px;
+        }
+        .right1{
+            color: white;
+            padding-top: 25px;
+        }
+        .rtop{
+            display: flex;
+            align-items: center;
+            gap:10px;
+            margin-bottom: 5px;
+        }
+        .s1{
+          border-radius: 15px;
+         
+        }
+        .rh{
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+        .jiohotstar{
+          border-radius: 2px;
+        }
+        .s11{
+          color: white;
+        }
+        .rp{
+          font-size: 20px;
+          color: white;
+          margin-bottom: 40px;
+          
+        }
+        .btn{
+            background-color: rgb(72, 72, 72);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 40px ;
+            font-size: 21px;
+            color: white;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        .btn:hover{
+            background-color: rgba(220, 0, 0, 0.859);
+            cursor:pointer;
+            color: grey;
+        }
+        .section2{
+            width:100%;
+            min-height:100vh;
+            margin: 13px auto;
+        }
+        .s2-bg{
+          width: 100%;
+          position: sticky;
+          top: 0;
+
+        }
+        .sec2-left{
+          width:100%;
+            min-height:200px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            bottom: 400px;
+            color: white;
+            padding:15px;
+            background: linear-gradient(to bottom, transparent, #00000079, #000000,  #000000 );
+
+        }
+        .luc{
+          margin-bottom: 15px;
+        }
+        .l1{
+            font-size: 20px;
+            color: #009FFF;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .l2{
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .l3{
+            font-size: 19px;
+            color: rgb(212, 208, 208);
+            font-weight: 400;
+            margin-bottom: 15px;
+            width:40%;
+        }
+        .l4{
+            font-size: 20px;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+        .btn2 {
+            font-size: 20px;
+            width: 30%;
+            height: 50px;
+            border-radius: 8px;
+            border: none;
+            background: #009FFF;
+            background: -webkit-linear-gradient(to left, #ec2F4B, #009FFF);
+            background: linear-gradient(to left, #ec2F4B, #009FFF);
+            color: white;
+            font-weight: 600;
+            gap:10px;
+            transition: 0.5s all ease;
+        }
+        .btn2:hover{
+            scale:1.2;
+        }
+        .sec2-bottom{
+            display: flex;
+            width:100%;
+            justify-content: space-between;
+        }
+        .section3 {
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .s3-head{
+          font-size: 28px;
+            color: white;
+            font-weight: 700;
+        }
+        .s3-movies{
+          padding: 18px;
+            display: flex;
+            overflow: scroll;
+            gap: 20px;
+        }
+        .m{
+            border-radius: 5px;
+            transition: 0.5s all ease;
+        }
+        .m:hover{
+            scale: 1.1;
+            cursor: pointer;
+        }
+        .section4 {
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .movies{
+            padding: 24px;
+            display: flex;
+            overflow: scroll;
+            gap: 40px;
+        }
+        .movies::-webkit-scrollbar {
+            display: none;
+        }
+        .box{
+            position:relative;
+        }
+        .box1::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '1';
+        }
+        .box2::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '2';
+        }
+        .box3::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '3';
+        }
+        .box4::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '4';
+        }
+        .box5::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '5';
+        }
+        .box6::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '6';
+        }
+        .box7::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '7';
+        }
+        .box8::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '8';
+        }
+        .box9::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '9';
+        }
+        .box10::after{
+            position:absolute;
+            left:-30px;
+            bottom:-30px;
+            font-size: 100px;
+            font-weight: 700;
+            color: white;
+            content: '10';
+        }
+        .box:hover{
+            scale:1.1;
+            transition: 0.5s all ease;
+        }
+        .movie{
+            border-radius: 5px;
+        }
+        .top{
+            padding: 18px;
+            display: flex;
+            overflow: scroll;
+            gap: 25px;
+        }
+        .section5{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .sec3-head{
+            font-size: 28px;
+            color: white;
+            font-weight: 700;
+        }
+        .releases{
+            padding: 18px;
+            display: flex;
+            overflow: scroll;
+            gap: 20px;
+        }
+        .r{
+            border-radius: 5px;
+            transition: 0.5s all ease;
+        }
+        .r:hover{
+            scale: 1.1;
+            cursor: pointer;
+        }
+        .section6{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .section7{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .section8{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .section9{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .series:hover {
+            scale: 1.1;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        .section10{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+            position: relative;
+            bottom: 400px;
+        }
+        .footer {
+      width: 100%;
+      height: 400px;
+      padding: 100px;
+      border-top: 1px solid gray;
+    }
+    .footerup{
+        display: flex;
+        flex-direction: column;
+      }
+      .footerlower{
+        display: flex;
+        flex-direction: column;
+      }
+       
+       
+        </style>
+        </head>
+        <body>
+            <div class="container">
+             <nav class="navigation">
+              <div><img src="hotstar_logo.png" height="60px" class="logo" alt=""></div>
+             <div><i class="fa-solid fa-house"></i></div>
+             <div><i class="fa-solid fa-magnifying-glass"></i></div>
+             <div><i class="fa-solid fa-tv"></i></div>
+             <div><i class="fa-solid fa-bowl-food"></i></div>
+             <div><i class="fa-solid fa-person-running"></i></div>
+             <div><i class="fa-solid fa-video"></i></div> 
+             <div><i class="fa-solid fa-table"></i></div>
+              <div><i class="fa-regular fa-circle-user"></i></div>
+
+             </nav>
+              <div class="main">
+              <!-- 1 -->
+               <div class="section1">
+                <div class="left1">
+                  <img src="sd.s1.webp" height="350"  class="s1">
+                </div>
+                <div class="right1">
+                  <div class="rtop">
+                  <img src="JioHotstar.webp" width="70px" alt="">
+                  </div>
+                 <div class="s11">
+                  <h4 class="rh">Sookshmadarshini</h4>
+                 </div>
+                  
+               
+                <div class="rbottom">
+                  <p class="rp">Manuel's return to the neighbourhood prompts a homemaker Priyadarshini to be cautious Eventually, she realises that there's far more to him than meets the eye.
+                  </p>
+                </div>
+                <button class="btn" type="button">Trailer</button> 
+               </div>
+              </div>
+              <!-- 2 -->
+             <div class="section2">
+              <img src="1740678198018-i.avif" class="s2-bg" alt="">
+              <div class="sec2-left">
+                <img src="luc.avif"  width="200px" alt="" class="luc">
+                <p class="l1">New Realease</p>
+                <p class="l2">2025 . U/A 13+ . 1season . 7languages</p>
+                <p class="l3">Vinod is ready to build his dream house</p>
+                <p class="l4">Comedy | Romance</p>
+                <div class="sec2-bottom">
+                  <button class="btn2"><i class="fa-solid fa-play"></i>  Watch Now</button> 
+              </div>
+             </div>
+             <!-- 3 -->
+              <div class="section3">
+                <h4 class="s3-head">Non-Stop Sports</h4>
+                <div class="s3-movies">
+                  <img src="smm-1.avif" alt="" class="m" height="150px">
+                  <img src="sm-2.avif" alt="" class="m" height="150px">
+                  <img src="sm-3.avif" alt="" class="m" height="150px">
+                  <img src="sm-4.avif" alt="" class="m" height="150px">
+                  <img src="sm-5.avif" alt="" class="m" height="150px">
+                  <img src="sm-10.avif" alt="" class="m" height="150px">
+                  <img src="sm-7.avif" alt="" class="m" height="150px">
+                  <img src="sm-9.avif" alt="" class="m" height="150px">
+                  <img src="sm-8.avif" alt="" class="m" height="150px">
+                  <img src="sm-10.avif" alt="" class="m" height="150px">
+
+                </div>
+
+              </div>
+              <!-- 4 -->
+               <div class="section4">
+                <h4 class="s3-head">Top 10 in India Today-Telugu</h4>
+                <div class="top">
+                  <div class="box box1">
+                      <img src="t1.webp" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box2">
+                      <img src="t2.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box3">
+                      <img src="t3.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box4">
+                      <img src="t3.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box5">
+                      <img src="t5.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box6">
+                      <img src="t6.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box7">
+                      <img src="t7.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box8">
+                      <img src="t8.avif" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box9">
+                      <img src="t9.webp" alt="" class="movie" height="250px">
+                  </div>
+                  <div class="box box10">
+                      <img src="t10.webp" alt="" class="movie" height="250px">
+                  </div>
+              </div>
+              </div>
+              <!-- 5 -->
+              <div class="section5">
+                <h4 class="sec3-head">Latest Releases</h4>
+                <div class="releases">
+                    <img src="a2.webp" alt="" class="r" height="250px">
+                    <img src="a3.webp" alt="" class="r" height="250px">
+                    <img src="a4.webp" alt="" class="r" height="250px">
+                    <img src="a5.avif" alt="" class="r" height="250px">
+                    <img src="a6.webp" alt="" class="r" height="250px">
+                    <img src="a7.webp" alt="" class="r" height="250px">
+                    <img src="a8.webp" alt="" class="r" height="250px">
+                    <img src="a9.webp" alt="" class="r" height="250px">
+                    <img src="a3.webp" alt="" class="r" height="250px">
+                    <img src="a11.avif" alt="" class="r" height="250px">
+                </div>
+              </div>
+              <!-- 6 -->
+              <div class="section6">
+                <h4 class="sec3-head">Comedy Movies</h4>
+                <div class="releases">
+                    <img src="c1.webp" alt="" class="r" height="250px">
+                    <img src="c2.webp" alt="" class="r" height="250px">
+                    <img src="c3.avif" alt="" class="r" height="250px">
+                    <img src="c4.webp" alt="" class="r" height="250px">
+                    <img src="c5.webp" alt="" class="r" height="250px">
+                    <img src="c6.avif" alt="" class="r" height="250px">
+                    <img src="c7.webp" alt="" class="r" height="250px">
+                    <img src="c8.webp" alt="" class="r" height="250px">
+                    <img src="c9.webp" alt="" class="r" height="250px">
+                    <img src="c10.avif" alt="" class="r" height="250px">
+                </div>
+              </div>
+              <!-- 7 -->
+               <div class="section7">
+                <h5 class="sec3-head">Studios</h5>
+                    <div class="releases">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5598/1739441155598-a" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5223/1535223-a-292dbf42783d" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/5731/1739780835731-a" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/7816/1739359307816-a" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/583/1739358280583-a" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5224/1535224-a-1d1cfe20ffa3" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5226/1535226-a-3080287f77cd" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5228/1535228-a-fb6607a8214c" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5225/1535225-a-58f3d258b91e" alt="" width="180px" class="series">
+                    </div>
+
+               </div>
+               <!-- 8 -->
+               <div class="section8">
+                <h4 class="sec3-head">Kids'Corner</h4>
+                <div class="releases">
+                    <img src="k10.webp" alt="" class="r" height="250px">
+                    <img src="k2.webp" alt="" class="r" height="250px">
+                    <img src="k3.avif" alt="" class="r" height="250px">
+                    <img src="k5.avif" alt="" class="r" height="250px">
+                    <img src="k6.avif" alt="" class="r" height="250px">
+                    <img src="k8.webp" alt="" class="r" height="250px">
+                    <img src="k10.webp" alt="" class="r" height="250px">
+                    <img src="k5.avif" alt="" class="r" height="250px">
+                    <img src="k3.avif" alt="" class="r" height="250px">
+                    <img src="k5.avif" alt="" class="r" height="250px">
+                </div>
+              </div>
+              <!-- 9 -->
+               <div class="section9">
+                <h5 class="s3-head">Popular Languages</h5>
+                    <div class="releases">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6660/1526660-a-afdd1ecfd8ae" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6661/1526661-a-00b818b5bc0e" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6682/1526682-a-fd4e220ba563" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6685/1526685-a-5f5995a53f61" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/6668/1526668-a-ed367d61302a" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6660/1526660-a-afdd1ecfd8ae" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6661/1526661-a-00b818b5bc0e" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6682/1526682-a-fd4e220ba563" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/6685/1526685-a-5f5995a53f61" alt="" width="180px" class="series">
+                        <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/6668/1526668-a-ed367d61302a" alt="" width="180px" class="series">
+                    </div>
+
+               </div>
+               <!-- 10 -->
+                <div class="section10">
+                  <h5 class="s3-head">Popular Genres</h5>
+                    <div class="releases">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5262/1535262-a-fbabfaf1176e" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5285/1535285-a-88035ca1ae69" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5284/1535284-a-656c6b45a905" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5264/1535264-a-9e7871687c76" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5292/1535292-a-5739f9c84b63" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5267/1535267-a-3cae422b372e" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5281/1535281-a-b56dc39e5bb7" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5246/1535246-a-27373cc1a222" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5298/1535298-a-7d27752d8350" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5280/1535280-a-a1d64ccd7457" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5270/1535270-a-6a85b09721ab" alt="" width="180px" class="series">
+                      <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1080/sources/r1/cms/prod/5279/1535279-a-c92b487cb711" alt="" width="180px" class="series">
+                      
+
+                      
+                    </div>
+
+                </div>
+
+               
+                
+              
+            </div>
+               
+          
+                
+
+              
+
+         </body>
+</html>
